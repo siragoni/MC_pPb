@@ -1557,5 +1557,6 @@ void AliAnalysisTaskForMCpPb::SetLuminosityCap()
   else if ( fRunNum == 297558 ) { fLumiPerRun = 0.4783; }
   else if ( fRunNum == 297588 ) { fLumiPerRun = 5.2912; }
   else if ( fRunNum == 297590 ) { fLumiPerRun = 3.06;   }
+  else                          { fLumiPerRun = 1.00;   }
 
 }
