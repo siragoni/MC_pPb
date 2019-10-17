@@ -2,7 +2,7 @@
 00*
 
 #  -  Ignore AliAnalysisTaskUPCforwardMC compilation files
-AliAnalysisTaskUPCforwardMC_*
+AliAnalysisTask*_*
 
 #  -  Ignore the AnalysisResults
 AnalysisResults*
