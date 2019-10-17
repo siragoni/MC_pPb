@@ -8,7 +8,7 @@
 // precompiled header files (with extension pcm) are available, so that you do not need to
 // specify includes for those. for your own task however, you (probably) have not generated a
 // pcm file, so we need to include it explicitly
-#include "AliAnalysisTaskUPCforwardMC.h"
+#include "AliAnalysisTaskForMCpPb.h"
 
 void runAnalysis(Int_t opt, Int_t isMC = 0)
 // opt = 0; 2018 q
@@ -96,12 +96,12 @@ void runAnalysis(Int_t opt, Int_t isMC = 0)
     // here we have to differentiate between using the just-in-time compiler
     // from root6, or the interpreter of root5
 #if !defined (__CINT__) || defined (__CLING__)
-    gInterpreter->LoadMacro("AliAnalysisTaskUPCforwardMC.cxx++g");
-    AliAnalysisTaskUPCforwardMC *task = reinterpret_cast<AliAnalysisTaskUPCforwardMC*>(gInterpreter->ExecuteMacro("AddTaskUPCforwardMC.C"));
+    gInterpreter->LoadMacro("AliAnalysisTaskForMCpPb.cxx++g");
+    AliAnalysisTaskForMCpPb *task = reinterpret_cast<AliAnalysisTaskForMCpPb*>(gInterpreter->ExecuteMacro("AddTaskForMCpPb.C"));
 #else
-    gROOT->LoadMacro("AliAnalysisTaskUPCforwardMC.cxx++g");
-    gROOT->LoadMacro("AddTaskUPCforwardMC.C");
-    AliAnalysisTaskUPCforwardMC *task = AddTaskUPCforwardMC();
+    gROOT->LoadMacro("AliAnalysisTaskForMCpPb.cxx++g");
+    gROOT->LoadMacro("AddTaskForMCpPb.C");
+    AliAnalysisTaskForMCpPb *task = AddTaskForMCpPb();
 #endif
 
 
@@ -147,8 +147,8 @@ void runAnalysis(Int_t opt, Int_t isMC = 0)
         // also specify the include (header) paths on grid
         alienHandler->AddIncludePath("-I. -I$ROOTSYS/include -I$ALICE_ROOT -I$ALICE_ROOT/include -I$ALICE_PHYSICS/include");
         // make sure your source files get copied to grid
-        alienHandler->SetAdditionalLibs("AliAnalysisTaskUPCforwardMC.cxx AliAnalysisTaskUPCforwardMC.h");
-        alienHandler->SetAnalysisSource("AliAnalysisTaskUPCforwardMC.cxx");
+        alienHandler->SetAdditionalLibs("AliAnalysisTaskForMCpPb.cxx AliAnalysisTaskForMCpPb.h");
+        alienHandler->SetAnalysisSource("AliAnalysisTaskForMCpPb.cxx");
         // select the aliphysics version. all other packages
         // are LOADED AUTOMATICALLY!
         alienHandler->SetAliPhysicsVersion("vAN-20181028_ROOT6-1");

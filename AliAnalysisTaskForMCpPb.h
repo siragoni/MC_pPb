@@ -2,11 +2,11 @@
 /* See cxx source for full Copyright notice */
 /* $Id$ */
 
-#ifndef AliAnalysisTaskUPCforwardMC_H
-#define AliAnalysisTaskUPCforwardMC_H
+#ifndef AliAnalysisTaskForMCpPb_H
+#define AliAnalysisTaskForMCpPb_H
 
 /**
- * @file   AliAnalysisTaskUPCforwardMC.h
+ * @file   AliAnalysisTaskForMCpPb.h
  * @author Simone Ragoni <Simone.Ragoni@cern.ch>
  * @date   February 2019
  */
@@ -17,27 +17,27 @@
 class AliMuonTrackCuts; 					// Include class for standard muon tack cuts
 
 /**
- * \file AliAnalysisTaskUPCforwardMC.h
- * \brief Contains the declaration of the AliAnalysisTaskUPCforwardMC class
+ * \file AliAnalysisTaskForMCpPb.h
+ * \brief Contains the declaration of the AliAnalysisTaskForMCpPb class
  */
 
 /**
- * \class AliAnalysisTaskUPCforwardMC
+ * \class AliAnalysisTaskForMCpPb
  * \brief Contains the tools to every part of my analysis
  */
-class AliAnalysisTaskUPCforwardMC : public AliAnalysisTaskSE
+class AliAnalysisTaskForMCpPb : public AliAnalysisTaskSE
 {
     public:
                                 /**
-                                 * Create a new AliAnalysisTaskUPCforwardMC with
+                                 * Create a new AliAnalysisTaskForMCpPb with
                                  * default constructor. Based on my understanding
                                  * this is mostly related to input/output
                                  * processes.
                                  */
-                                AliAnalysisTaskUPCforwardMC();
+                                AliAnalysisTaskForMCpPb();
 
                                 /**
-                                 * Create a new AliAnalysisTaskUPCforwardMC with
+                                 * Create a new AliAnalysisTaskForMCpPb with
                                  * a specific name. This serves to instantiate
                                  * the AliAnalysisTaskSE object built with the
                                  * constructor, that will take this specific
@@ -46,14 +46,14 @@ class AliAnalysisTaskUPCforwardMC : public AliAnalysisTaskSE
                                  * \param name , the name taken by the AliAnalysisTaskSE object.
                                  * \param isMC , 0 if Data, 1 if MC(look at the AddTask please).
                                  */
-                                AliAnalysisTaskUPCforwardMC(const char *name);
+                                AliAnalysisTaskForMCpPb(const char *name);
 
                                 /**
                                  * Virtual destructor for the class. It will
                                  * take care of all the particular objects to be
                                  * destroyed for the class.
                                  */
-        virtual                 ~AliAnalysisTaskUPCforwardMC();
+        virtual                 ~AliAnalysisTaskForMCpPb();
 
                                 /**
                                  * The function related to the instantiation of
@@ -1240,19 +1240,19 @@ class AliAnalysisTaskUPCforwardMC : public AliAnalysisTaskSE
         /**
          * Not implemented yet...
          */
-        AliAnalysisTaskUPCforwardMC(const AliAnalysisTaskUPCforwardMC&);
+        AliAnalysisTaskForMCpPb(const AliAnalysisTaskForMCpPb&);
 
         /**
          * Not implemented yet...
          */
-        AliAnalysisTaskUPCforwardMC& operator=(const AliAnalysisTaskUPCforwardMC&);
+        AliAnalysisTaskForMCpPb& operator=(const AliAnalysisTaskForMCpPb&);
 
         /**
          * This is important for ROOT only. I do not remember the reason anymore.
          * If I happen to encounter it again in the future, I will make sure to
          * record it!
          */
-        ClassDef(AliAnalysisTaskUPCforwardMC, 33);
+        ClassDef(AliAnalysisTaskForMCpPb, 1);
 };
 
 #endif

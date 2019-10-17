@@ -65,7 +65,7 @@
 
 
 // my headers
-#include "AliAnalysisTaskUPCforwardMC.h"
+#include "AliAnalysisTaskForMCpPb.h"
 
 
 // headers for MC
@@ -75,14 +75,14 @@
 
 
 
-class AliAnalysisTaskUPCforwardMC;    // your analysis class
+class AliAnalysisTaskForMCpPb;    // your analysis class
 
 using namespace std;            // std namespace: so you can do things like 'cout'
 
-ClassImp(AliAnalysisTaskUPCforwardMC) // classimp: necessary for root
+ClassImp(AliAnalysisTaskForMCpPb) // classimp: necessary for root
 
 //_____________________________________________________________________________
-AliAnalysisTaskUPCforwardMC::AliAnalysisTaskUPCforwardMC()
+AliAnalysisTaskForMCpPb::AliAnalysisTaskForMCpPb()
     : AliAnalysisTaskSE(),
       fAOD(0),
       fOutputList(0),
@@ -285,7 +285,7 @@ AliAnalysisTaskUPCforwardMC::AliAnalysisTaskUPCforwardMC()
 }
 
 //_____________________________________________________________________________
-AliAnalysisTaskUPCforwardMC::AliAnalysisTaskUPCforwardMC( const char* name )
+AliAnalysisTaskForMCpPb::AliAnalysisTaskForMCpPb( const char* name )
     : AliAnalysisTaskSE(name),
       fAOD(0),
       fOutputList(0),
@@ -504,14 +504,14 @@ AliAnalysisTaskUPCforwardMC::AliAnalysisTaskUPCforwardMC( const char* name )
                                         // make changes to your AddTask macro!
 }
 //_____________________________________________________________________________
-AliAnalysisTaskUPCforwardMC::~AliAnalysisTaskUPCforwardMC()
+AliAnalysisTaskForMCpPb::~AliAnalysisTaskForMCpPb()
 {
     // destructor
     if(fOutputList)    {delete fOutputList;}     	// at the end of your task, it is deleted
     if(fMuonTrackCuts) {delete fMuonTrackCuts;}   // from memory by calling this function
 }
 //_____________________________________________________________________________
-// void AliAnalysisTaskUPCforwardMC::FillGoodRunVector(std::vector<Int_t> &fVectorGoodRunNumbers)
+// void AliAnalysisTaskForMCpPb::FillGoodRunVector(std::vector<Int_t> &fVectorGoodRunNumbers)
 // {
 //   fVectorGoodRunNumbers.clear();
 //   Int_t listOfGoodRunNumbersLHC18q[] = { 295585, 295586, 295587, 295588, 295589, 295612,
@@ -565,7 +565,7 @@ AliAnalysisTaskUPCforwardMC::~AliAnalysisTaskUPCforwardMC()
 //   }
 // }
 //_____________________________________________________________________________
-void AliAnalysisTaskUPCforwardMC::UserCreateOutputObjects()
+void AliAnalysisTaskForMCpPb::UserCreateOutputObjects()
 {
   // create output objects
   //
@@ -1525,13 +1525,13 @@ void AliAnalysisTaskUPCforwardMC::UserCreateOutputObjects()
   PostData(1, fOutputList);
 }
 //_____________________________________________________________________________
-void AliAnalysisTaskUPCforwardMC::NotifyRun()
+void AliAnalysisTaskForMCpPb::NotifyRun()
 {
   /// Set run number for cuts
   fMuonTrackCuts->SetRun(fInputHandler);
 }
 //_____________________________________________________________________________
-void AliAnalysisTaskUPCforwardMC::UserExec(Option_t *)
+void AliAnalysisTaskForMCpPb::UserExec(Option_t *)
 {
   /* - This iSelectionCounter is used as a token. So at every passing step it is
      - increased by one. All the events are supposed to pass the first step
@@ -2641,7 +2641,7 @@ void AliAnalysisTaskUPCforwardMC::UserExec(Option_t *)
   PostData(1, fOutputList);
 }
 //_____________________________________________________________________________
-Bool_t AliAnalysisTaskUPCforwardMC::IsTriggered()
+Bool_t AliAnalysisTaskForMCpPb::IsTriggered()
 {
   /* - This function IS roughly speaking the trigger for the MC.
      - This code has been greatly inspired by David Horak's work.
@@ -2661,7 +2661,7 @@ Bool_t AliAnalysisTaskUPCforwardMC::IsTriggered()
 
 }
 //_____________________________________________________________________________
-void AliAnalysisTaskUPCforwardMC::ProcessMCParticles(AliMCEvent* fMCEventArg)
+void AliAnalysisTaskForMCpPb::ProcessMCParticles(AliMCEvent* fMCEventArg)
 {
   // Loop over the MC tracks
   for(int iPart = 0; iPart < (fMCEventArg->GetNumberOfTracks()); iPart++) {
@@ -3296,7 +3296,7 @@ void AliAnalysisTaskUPCforwardMC::ProcessMCParticles(AliMCEvent* fMCEventArg)
    - inclusive people's analysis, hence it is not fit for the UPC...
    -
  */
-Double_t AliAnalysisTaskUPCforwardMC::CosThetaCollinsSoper( TLorentzVector muonPositive,
+Double_t AliAnalysisTaskForMCpPb::CosThetaCollinsSoper( TLorentzVector muonPositive,
                                                             TLorentzVector muonNegative,
                                                             TLorentzVector possibleJPsi )
 {
@@ -3343,7 +3343,7 @@ Double_t AliAnalysisTaskUPCforwardMC::CosThetaCollinsSoper( TLorentzVector muonP
   return   CosThetaCS;
 }
 //_____________________________________________________________________________
-Double_t AliAnalysisTaskUPCforwardMC::CosThetaHelicityFrame( TLorentzVector muonPositive,
+Double_t AliAnalysisTaskForMCpPb::CosThetaHelicityFrame( TLorentzVector muonPositive,
                                                              TLorentzVector muonNegative,
                                                              TLorentzVector possibleJPsi )
 {
@@ -3392,7 +3392,7 @@ Double_t AliAnalysisTaskUPCforwardMC::CosThetaHelicityFrame( TLorentzVector muon
 
 }
 //_____________________________________________________________________________
-Double_t AliAnalysisTaskUPCforwardMC::CosPhiCollinsSoper( TLorentzVector muonPositive,
+Double_t AliAnalysisTaskForMCpPb::CosPhiCollinsSoper( TLorentzVector muonPositive,
                                                           TLorentzVector muonNegative,
                                                           TLorentzVector possibleJPsi )
 {
@@ -3442,7 +3442,7 @@ Double_t AliAnalysisTaskUPCforwardMC::CosPhiCollinsSoper( TLorentzVector muonPos
   return   phi;
 }
 //_____________________________________________________________________________
-Double_t AliAnalysisTaskUPCforwardMC::CosPhiHelicityFrame(  TLorentzVector muonPositive,
+Double_t AliAnalysisTaskForMCpPb::CosPhiHelicityFrame(  TLorentzVector muonPositive,
                                                             TLorentzVector muonNegative,
                                                             TLorentzVector possibleJPsi )
 {
@@ -3492,7 +3492,7 @@ Double_t AliAnalysisTaskUPCforwardMC::CosPhiHelicityFrame(  TLorentzVector muonP
   return   phi;
 }
 //_____________________________________________________________________________
-void AliAnalysisTaskUPCforwardMC::Terminate(Option_t *)
+void AliAnalysisTaskForMCpPb::Terminate(Option_t *)
 {
     cout << endl;
     // terminate
@@ -3508,7 +3508,7 @@ void AliAnalysisTaskUPCforwardMC::Terminate(Option_t *)
  * - So I am using the most barbaric C-style
  * - arrays/for...
  */
-void AliAnalysisTaskUPCforwardMC::SetLuminosityCap()
+void AliAnalysisTaskForMCpPb::SetLuminosityCap()
 {
   fLumiPerRun = 0;
   /* - Here I am rounding up the number for 10k,
