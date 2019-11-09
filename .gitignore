@@ -6,3 +6,7 @@ AliAnalysisTask*_*
 
 #  -  Ignore the AnalysisResults
 AnalysisResults*
+
+#  -  Ignore the GRID files
+*.xml
+pPbLHC*
