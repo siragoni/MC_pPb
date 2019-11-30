@@ -10,7 +10,7 @@
 // pcm file, so we need to include it explicitly
 #include "AliAnalysisTaskForMCpPb.h"
 
-void runAnalysis(Int_t opt)
+void runAnalysisIncoh(Int_t opt)
 {
   // set if you want to run the analysis locally (kTRUE), or on grid (kFALSE)
   // Bool_t local = kFALSE;
@@ -127,24 +127,15 @@ void runAnalysis(Int_t opt)
                                               /*266615,*/ 266614, 266613, 266595, 266593, 266591, 266588, 266587, 266584, 266549,
                                               266543, 266539, 266534, 266533, 266525, 266523, 266522, 266520, 266518, 266516,
                                               266514, 266487, 266480, 266479, 266472, 266441, 266439 };
-      Int_t listOfGoodRunNumbersLHC16r[]  = { 266318, 266316, 266312, 266305, 266304, 266300, 266299, 266296, 266235, 266234,
-                                              266208, 266197, 266196, 266193, 266190, 266189, 266187, 266117, 266086, 266085,
-                                              266084, 266081, 266076, 266074, 266034, 266025, 266023, 266022, 265841, 265840,
-                                              265797, 265795, 265792, 265789, 265788, 265787, 265785, 265756, 265754, 265746,
-                                              265744, 265742, 265741, 265740, 265714, 265713, 265709, 265701, 265700, 265698,
-                                              265697, /*265696,*/ 265694, 265691, 265607, 265596, 265594 };
 
-  	  alienHandler->SetGridDataDir("/alice/sim/2017/LHC17e4/kIncohJpsiToMu/");
+  	  alienHandler->SetGridDataDir("/alice/sim/2017/LHC17e4/kIncohJpsiToMu");
   	  alienHandler->SetDataPattern("*AOD/*AliAOD.root");
   	  // MC has no prefix, data has prefix 000
   	  // alienHandler->SetRunPrefix("000");
   	  // runnumber
   	  // alienHandler->AddRunNumber(296510);
-      // for( Int_t iRunLHC16s = 0; iRunLHC16s <  75; iRunLHC16s++){
-      //   alienHandler->AddRunNumber( listOfGoodRunNumbersLHC16s[iRunLHC16s] );
-      // }
-      for( Int_t iRunLHC16r = 0; iRunLHC16r <  56; iRunLHC16r++){
-        alienHandler->AddRunNumber( listOfGoodRunNumbersLHC16r[iRunLHC16r] );
+      for( Int_t iRunLHC16s = 0; iRunLHC16s <  75; iRunLHC16s++){
+        alienHandler->AddRunNumber( listOfGoodRunNumbersLHC16s[iRunLHC16s] );
       }
 
   	} else {
@@ -152,10 +143,10 @@ void runAnalysis(Int_t opt)
   	}
 
     // number of files per subjob
-    alienHandler->SetSplitMaxInputFileNumber(10);
+    alienHandler->SetSplitMaxInputFileNumber(30);
     alienHandler->SetExecutable("pPbLHC16sMC.sh");
     // specify how many seconds your job may take
-    alienHandler->SetTTL(10000);
+    alienHandler->SetTTL(30000);
     alienHandler->SetJDLName("pPbLHC16sMC.jdl");
 
     alienHandler->SetOutputToRunNo(kTRUE);
@@ -169,12 +160,12 @@ void runAnalysis(Int_t opt)
        -
      */
     // alienHandler->SetMergeViaJDL(kFALSE);
-    alienHandler->SetMaxMergeStages(4);
+    alienHandler->SetMaxMergeStages(2);
 
 
-    TString LHC16s("LHC16r_MC");
+    TString LHC16s("LHC17e4");
     // define the output folders
-    alienHandler->SetGridWorkingDir("pPbLHC16r_MC_Incoh_NoADatAll");
+    alienHandler->SetGridWorkingDir("pPbLHC16s_MC_IncohSigh");
     // alienHandler->SetGridOutputDir("myOutputDir");
     if (opt == 0) alienHandler->SetGridOutputDir(LHC16s.Data());
 
@@ -194,12 +185,12 @@ void runAnalysis(Int_t opt)
         /* - The option FULL is to send the full analysis.
            -
          */
-        // alienHandler->SetRunMode("full");
+        alienHandler->SetRunMode("full");
 
         /* - This option TERMINATE is used for the merging of the files.
            -
          */
-        alienHandler->SetRunMode("terminate");
+        // alienHandler->SetRunMode("terminate");
         mgr->StartAnalysis("grid");
     }
 }
