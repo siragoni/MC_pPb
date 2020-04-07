@@ -140,12 +140,12 @@ void runAnalysis(Int_t opt)
   	  // alienHandler->SetRunPrefix("000");
   	  // runnumber
   	  // alienHandler->AddRunNumber(296510);
-      // for( Int_t iRunLHC16s = 0; iRunLHC16s <  75; iRunLHC16s++){
-      //   alienHandler->AddRunNumber( listOfGoodRunNumbersLHC16s[iRunLHC16s] );
-      // }
-      for( Int_t iRunLHC16r = 0; iRunLHC16r <  56; iRunLHC16r++){
-        alienHandler->AddRunNumber( listOfGoodRunNumbersLHC16r[iRunLHC16r] );
+      for( Int_t iRunLHC16s = 0; iRunLHC16s <  75; iRunLHC16s++){
+        alienHandler->AddRunNumber( listOfGoodRunNumbersLHC16s[iRunLHC16s] );
       }
+      // for( Int_t iRunLHC16r = 0; iRunLHC16r <  56; iRunLHC16r++){
+      //   alienHandler->AddRunNumber( listOfGoodRunNumbersLHC16r[iRunLHC16r] );
+      // }
 
   	} else {
   	  cout << " not a valid option ... bye!" << endl;
@@ -163,18 +163,18 @@ void runAnalysis(Int_t opt)
     // merging: run with "kTRUE" and "full" for normal run
     // to merge on grid run jobs in SetRunMode("terminate")
     // to collect final results set SetMergeViaJDL(kFALSE)
-    alienHandler->SetMergeViaJDL(kTRUE);
+    // alienHandler->SetMergeViaJDL(kTRUE);
 
     /* - The setting to kFALSE is to download the output files
        -
      */
-    // alienHandler->SetMergeViaJDL(kFALSE);
+    alienHandler->SetMergeViaJDL(kFALSE);
     alienHandler->SetMaxMergeStages(4);
 
 
-    TString LHC16s("LHC16r_MC");
+    TString LHC16s("LHC16s_MC");
     // define the output folders
-    alienHandler->SetGridWorkingDir("pPbLHC16r_MC_Incoh_NoADatAll");
+    alienHandler->SetGridWorkingDir("MC_2016_ADdecisions");
     // alienHandler->SetGridOutputDir("myOutputDir");
     if (opt == 0) alienHandler->SetGridOutputDir(LHC16s.Data());
 

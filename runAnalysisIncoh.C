@@ -165,7 +165,7 @@ void runAnalysisIncoh(Int_t opt)
 
     TString LHC16s("LHC17e4");
     // define the output folders
-    alienHandler->SetGridWorkingDir("pPbLHC16s_MC_IncohSigh");
+    alienHandler->SetGridWorkingDir("pPbLHC16s_MC_IncohWithAD");
     // alienHandler->SetGridOutputDir("myOutputDir");
     if (opt == 0) alienHandler->SetGridOutputDir(LHC16s.Data());
 
